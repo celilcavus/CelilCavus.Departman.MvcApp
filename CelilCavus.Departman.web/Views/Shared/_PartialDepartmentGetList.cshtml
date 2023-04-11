@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Department>
+
+<table class="table table-bordered mt-4 text-center">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>DEPARTMENT</td>
+            <td>GÜNCELLE</td>
+            <td>SİL</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.DepartmanName</td>
+                <td>@Html.ActionLink("Güncelle","PutDepartment","Department", new { item.Id }, new { @class = "btn btn-warning" })</td>
+                <td>@Html.ActionLink("Sil", "DeleteDepartment","Department", new { item.Id }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+    </tbody>
+</table>

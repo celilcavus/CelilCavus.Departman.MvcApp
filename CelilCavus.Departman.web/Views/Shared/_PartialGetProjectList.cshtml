@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Project>
+
+<table class="table table-bordered mt-4 text-center">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>PROJE ADI</td>
+            <td>PROJE BAŞLANGIÇ TARİHİ</td>
+            <td>PROJE BİTİŞ TARİHİ</td>
+            <td>GÜNCELLE</td>
+            <td>SİL</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.ProjectName</td>
+                <td>@item.ProjectStartDate.ToShortDateString()</td>
+                <td>@item.ProjectEndDate.ToShortDateString()</td>
+                <td>@Html.ActionLink("Güncelle", "PutProject", "Project", new { item.Id }, new { @class = "btn btn-warning" })</td>
+                <td>@Html.ActionLink("Sil", "DeleteProject", "Project", new { item.Id }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

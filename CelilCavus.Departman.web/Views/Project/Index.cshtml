@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@model Project
+
+@using (Html.BeginForm("Index", "Project", FormMethod.Post))
+{
+    <br />
+    @Html.Label("Proje Adı :*")
+    @Html.TextBoxFor(x => x.ProjectName, new { @class = "form-control" })
+
+    <br />
+    @Html.Label("Proje Başlangıç Tarihi :*")
+    @Html.TextBoxFor(x => x.ProjectStartDate, new { @class = "form-control", @type = "date"})
+
+    <br />
+    @Html.Label("Proje Bitiş Tarihi :*")
+    @Html.TextBoxFor(x => x.ProjectEndDate, new { @class = "form-control", @type = "date" })
+  
+    <br />
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+}
+@if (ViewBag.Valid == true)
+{
+    @Html.ValidationMessageFor(x => x.ProjectName, ViewBag.ErrorMessage as string, new { @class = "alert bg-danger text-white d-block mt-2 mb-2" })
+}
+
+@Html.Action("PartialGetProjectList","Project")
+

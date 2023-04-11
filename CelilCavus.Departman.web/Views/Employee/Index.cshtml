@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@model Employee
+
+@using (Html.BeginForm("Index", "Employee", FormMethod.Post))
+{
+    @Html.Label("Ad : *", new { @class = "mt-1 mb-1" })
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+
+    @Html.Label("Soyad : *", new { @class = "mt-1 mb-1" })
+    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+
+    @Html.Label("İş Adı : *", new { @class = "mt-1 mb-1" })
+    @Html.TextBoxFor(x => x.JobTitle, new { @class = "form-control" })
+
+    @Html.Label("Tel No : *", new { @class = "mt-1 mb-1" })
+    @Html.TextBoxFor(x => x.PhoneNo, new { @class = "form-control" })
+
+    @Html.Label("Maaş : *", new { @class = "mt-1 mb-1" })
+    @Html.TextBoxFor(x => x.Salary, new { @class = "form-control" })
+
+    @Html.Label("Departman : *", new { @class = "mt-1 mb-1" })
+    @Html.DropDownListFor(x => x.DepartmanId,(List<SelectListItem>)ViewBag.departmanList, new { @class = "form-control" })
+
+    @Html.Label("Görevli Proje : *", new { @class = "mt-1 mb-1" })
+    @Html.DropDownListFor(x => x.ProjectId, (List<SelectListItem>)ViewBag.projectList, new { @class = "form-control" })
+    <br />
+    <button type="submit" class="btn btn-primary mt-2">Kaydet</button>
+}
+@if (ViewBag.Valid == true)
+{
+    <div class="alert bg-danger text-white d-block mt-2 mb-2">
+        @Html.ValidationMessageFor(x => x.Name, null)
+        <br />
+        @Html.ValidationMessageFor(x => x.LastName, null)
+        <br />
+        @Html.ValidationMessageFor(x => x.JobTitle, null)
+        <br />
+        @Html.ValidationMessageFor(x => x.PhoneNo, null)
+        <br />
+        @Html.ValidationMessageFor(x => x.Salary, null)
+    </div>
+}
+@Html.Action("EmployeeGetPartialList")
+
+

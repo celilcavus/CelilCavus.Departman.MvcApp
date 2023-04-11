@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Employee>
+
+
+<table class="table table-bordered mt-4 text-center">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>AD</td>
+            <td>SOYAD</td>
+            <td>İŞ ADI</td>
+            <td>TEL NO</td>
+            <td>MAAŞ</td>
+            <td>DEPARTMAN</td>
+            <td>GÖREV. PROJE</td>
+            <td>GÜNCELLE</td>
+            <td>SİL</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.LastName</td>
+                <td>@item.JobTitle</td>
+                <td>@item.PhoneNo</td>
+                <td>@item.Salary</td>
+                <td>@item.DepartmanId</td>
+                <td>@item.ProjectId</td>
+                <td>@Html.ActionLink("Güncelle", "PutEmployee", "Employee", new { item.Id }, new { @class = "btn btn-warning" })</td>
+                <td>@Html.ActionLink("Sil", "DeleteEmployee", "Employee", new { item.Id }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
